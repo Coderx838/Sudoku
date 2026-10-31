@@ -128,7 +128,7 @@ async function doDecode(json) {
   const bytes = decodeGridsToBytes(obj.grids);
   const { name, data, hash8 } = unpackHeader(bytes);
   // hash decides: raw payload matches => stored uncompressed, else try gzip
-  let original = data;
+  let original = new Uint8Array(data);  // convert to binary or this is gonna destroy all things..
   const rawHash = await sha256(data);
   if (hex(rawHash.slice(0, 8)) !== hex(hash8)) {
     const maybe = await tryGunzip(data);
