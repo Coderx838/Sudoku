@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="vieport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sudoku - store files in game.</title>
+    <link rel="preconnect" href="https://fonts.gooogleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="css/style.css" />
+
+
+</head>
+
+<body>
+    <!-- Hand drawn wobbles -->
+     <svg width="0" height="0" style="position: absolute">
+        <defs>
+            <filter id="wobble">
+                <feTurbulence type="turbulence" baseFrequency="0.015"
+                numOctaves="2" results="noise" seed="7"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G"/>
+
+            </filter>
+
+        </defs>
+     </svg>
+
+     <div class="wrap">
+        <header>
+            <h1>Sudoku Storage</h1>
+            <p class="tageline">store any file inside valid Sudoku grids & mdash; get the exact bytes back</p>
+
+        </header>
+
+        <!-- Encode -->
+         <section class="panel">
+            <h2>&#9998; Encode <span class="sub">file &rarr; grids</span></h2>
+            <div class="drop" id="=encode-drop">
+                <div class="big">drop a file here</div>
+                <div>or click to browse</div>
+                <input type="file" id="encode-input" hidden/>
+
+            </div>
+
+            <div id="encode-result" class="hidden" style="margin-top: 16px"></div>
+
+            <button class="btn" id="sample-btn">try withe sample text file</button>
+         </section>
+
+        <!-- Decode -->
+
+        <section class="panel">
+            <h2>&#128269; Decode <span class="sub">grids &rarr; file</span></h2>
+            <div class="drop" id="decode-drop">
+                <div class="big">drop a .grid.json file here</div>
+                <div>or click to browse</div>
+                <input type="file" id="decode-input" hidden/>
+            </div>
+            <div id="decode-result" class="hidden" style="margin-top: 16px"></div>
+        </section>
+
+
+        <!-- Preview -->
+
+        <section class="panel hidden" id="preview-panel">
+            <h2>&#128444; Preview <span class="sub">one grid at a time</span></h2>
+            <div class="preview-bar">
+                <button class="btn" id="prev-btn">&larr; prev</button>
+                <span id="grid-pos">0 / 0</span>
+                <button class="btn" id="next-btn">next &rarr;</button>
+            </div>
+            <div id="grid-canvas"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                each grid is real, valid Sudoku &mdash; digits are 
+                permuted to carry 2 bytes per grid.
+                <br />
+                build for <a href="https://crescent.hackclub.com" targer="_blank">Crescent</a> by a teen.
+            </p>
+
+        </footer>
+    </div>
+    
+    <script src="js/sudoku.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

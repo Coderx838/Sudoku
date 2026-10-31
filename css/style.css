@@ -1,0 +1,192 @@
+/* Sudoku css : pencil theme ^_~ */
+
+:root {
+  --paper: #fdfaf3;
+  --card: #fffdf7;
+  --ink: #555;
+  --ink-dark: #3a3a3a;
+  --ink-light: #999;
+  --line: #666;
+  --accent: #e8dcc8;
+  --ok: #5a8f5a;
+  --bad: #b55;
+}
+
+* { box-sizing: border-box;}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Patrick Hand", "Comic Sans MS", cursive;
+    font-size:18px;
+    line-height: 1.5;
+}
+
+.wrap{
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+}
+
+/* ---- header -----*/
+
+header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+h1 {
+    font-family: "Caveat", cursive;
+    font-size: 3.4rem;
+    margin: 0 0 4px;
+    color: var(--ink-dark);
+    letter-spacing: 1px;
+}
+.tagline {
+    color: var(--ink-light);
+    font-size:1.15rem;
+    margin:0;
+}
+
+/* ----- panels ------ */
+
+.panel{
+    background: var(--card);
+    border: 2.5px solid var(--line);
+    border-radius: 14px 10px 16px 8px;
+    padding: 22px 24px;
+    margin-bottom: 26px;
+    position: relative;
+    /* subtle woble */
+    filter: url(#wobble); 
+}
+.panel h2{
+    font-family: "Caveat", cursive;
+    font-size: 1.8rem;
+    margin: 0 0 14px;
+    color: var(--ink-dark);
+}
+
+.panel h2{
+    font-family: "Caveat", cursive;
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    margin-left: 8px;
+}
+
+/* --drop zone --- */
+.drop{
+    border: 2.5px dashed var(--line);
+    border-radius: 12px 8px 14px 6px;
+    padding: 34px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    color: var(--ink-light);
+}
+
+.drop:hover, .drop.drag{
+    background:var(--accent);
+    color:var(--ink);
+}
+.drop .big{
+    font-family: "Caveat", cursive;
+    font-size: 1.5rem;
+    color: var(--ink);
+}
+
+/* ------- buttons ------- */
+.btn {
+    font-family: "Patrick Hand", cursive;
+    font-size: 1.05rem;
+    background: var(--card);
+    color: var(--ink-dark);
+    border: 2.5px solid var(--line);
+    border-radius: 10px 7px 12px 6px;
+    padding: 8px 22px;
+    cursor: pointer;
+    margin-top: 1px;
+    transition: background 0.15s;
+
+}
+.btn:hover { background: var(--accent);}
+.btn:disabled {opacity: 0.4; cursor: default;}
+
+/* --- stats --- */
+.stat-row {
+    display:flex;
+    gap: 12px;
+    padding: 3px 0;
+    border-bottom: 1.5px dotted #bbb;
+}
+
+.stat-row .value { color: var(--ink-dark);}
+.mono{
+    font-family: "Courier New", monospace;
+    font-size: 0.85rem;
+    word-break: break-all;
+
+}
+.ok { color: var(--ok); font-weight: bold;}
+.bad { color: var(--bad); font-weight:  bold;}
+
+/* ---- preview ---- */
+.preview-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+#grid-pos { min-width: 80px; text-align: center; color: var(--ink-light);}
+
+#grid-canvas {
+    display: flex;
+    justify-content: center;
+}
+
+/* ----- suduko grid ------ */
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 42px);
+    grid-template-rows: repeat(9, 42px);
+    border: 3px solid var(--ink-dark);
+    border-radius: 4px;
+    background: var(--ink-dark);
+    gap: 1px;
+    filter: url(#wobble);
+}
+.call {
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    font-family:"Patrick Hand", cursive;
+    font-size:1.35rem;
+    color:var(--ink-dark);
+}
+.call.br { border-right: px solid var(--ink-dark);}
+.call.br { border-bottom: 3px solid var(--ink-dark);}
+
+/* ------ hidden ------ */
+.hidden { display: none !important;}
+
+/* ------ footer ---- */
+footer{
+    text-align: center;
+    color: var(--ink-light);
+    font-size: 0.95rem;
+    margin-top: 20px;
+}
+footer a {color: var(--ink);}
+
+/* ----- responsive -------- */
+@media (max-width: 500px){
+    .sudoku-grid{
+        grid-template-columns: repeat(9,34px);
+        grid-template-rows: repeat(9,34px);
+    }
+    .cell {font-size: 1.1rem;}
+    h1 { font-size: 2.6rem;}
+}
