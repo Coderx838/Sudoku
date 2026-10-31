@@ -4,7 +4,7 @@ const $ = (s) => document.querySelector(s);
 
 // --- crypto helpers -- //
 async function sha256(bytes) {
-    const view = bytes instanceof Uint8Array ? byte : new Uint8Array(bytes);
+    const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
     const buf = await crypto.subtle.digest("SHA-256", view);
     return new Uint8Array(buf)
 }
@@ -62,7 +62,7 @@ function renderGrid(grid,container){
 
 // --state --- 
 
-let state = { grids: [], name: "", origHash: null, totaleBytes: 0};
+let state = { grids: [], name: "", origHash: null, totalBytes: 0};
 
 // -- encode -- //
 
@@ -107,7 +107,7 @@ function downloadGrids(){
         grids: state.grids,
     })
 
-    const blob = new blob([payload], { type: "application/json"});
+    const blob = new Blob([payload], { type: "application/json"});
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = state.name + ".grids.json";
@@ -231,13 +231,13 @@ $("#next-btn").onclick = () => {
 // sample file button //
 
 $("#sample-btn").onclick = async () => {
-    const text = "Hello from Sudoku!\nThis file in hidden inside valid Sudoku grids.o(〃＾▽＾〃)o.\n";
+    const text = "Hello from Sudoku!\nThis file is hidden inside valid Sudoku grids.o(〃＾▽＾〃)o.\n";
     const file = new File([text], "hello.txt", {type: "text/plain"});
     try {
         await doEncode(file);
         $("#preview-panel").classList.remove("hidden");
 
     }   catch(err){
-        alert(arr.message);
+        alert(err.message);
     } 
 };

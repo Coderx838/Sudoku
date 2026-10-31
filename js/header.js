@@ -4,8 +4,8 @@
 const MAGIC = [0x57, 0x53, 0x54, 0x52]; // "WSTR"
 
 function packHeader(name, dataLen , hash8){
-    const nameByte = new TextEncoder().encode(name);
-    if (nameByte.length > 255) throw new Error("Filename too long");
+    const nameBytes = new TextEncoder().encode(name);
+    if (nameBytes.length > 255) throw new Error("Filename too long");
     const header = [];
     header.push(...MAGIC);
     header.push(nameBytes.length);

@@ -68,8 +68,8 @@ h1 {
     color: var(--ink-dark);
 }
 
-.panel h2{
-    font-family: "Caveat", cursive;
+.panel h2 .sub{
+    font-family: "Patrick Hand", cursive;
     font-size: 0.95rem;
     color: var(--ink-light);
     margin-left: 8px;
@@ -106,7 +106,7 @@ h1 {
     border-radius: 10px 7px 12px 6px;
     padding: 8px 22px;
     cursor: pointer;
-    margin-top: 1px;
+    margin-top: 10px;
     transition: background 0.15s;
 
 }
@@ -119,6 +119,11 @@ h1 {
     gap: 12px;
     padding: 3px 0;
     border-bottom: 1.5px dotted #bbb;
+}
+.stat-row:last-of-type { border-bottom: none; }
+.stat-row .label {
+    min-width: 76px;
+    color: var(--ink-light);
 }
 
 .stat-row .value { color: var(--ink-dark);}
@@ -158,16 +163,17 @@ h1 {
     gap: 1px;
     filter: url(#wobble);
 }
-.call {
+.cell {
     background: var(--card);
     display: flex;
     align-items: center;
+    justify-content: center;
     font-family:"Patrick Hand", cursive;
     font-size:1.35rem;
     color:var(--ink-dark);
 }
-.call.br { border-right: px solid var(--ink-dark);}
-.call.br { border-bottom: 3px solid var(--ink-dark);}
+.cell.br { border-right: 3px solid var(--ink-dark);}
+.cell.bb { border-bottom: 3px solid var(--ink-dark);}
 
 /* ------ hidden ------ */
 .hidden { display: none !important;}
